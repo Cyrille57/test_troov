@@ -1,0 +1,14 @@
+# Node_modules
+frontend/node_modules/
+backend/node_modules/
+
+# local env files
+backend/.env
+
+# Perso
+backend/notes/
+
+.vscode/
+
+
+# Tools
