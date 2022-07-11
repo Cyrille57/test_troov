@@ -9,6 +9,7 @@ backend/.env
 backend/notes/
 
 .vscode/
+.gitignore/
 
 
 # Tools

@@ -9,28 +9,26 @@
 
 // Framework Express:
 const express = require('express');
-
 // Helmet:
 const helmet = require('helmet');
-
 // Morgan:
 const morgan = require('morgan')
-
 // dotEnv:
 const dotEnv = require('dotenv').config()
-
 // Body-parser:
 const bodyParser = require('body-parser')
-
 // MongoDb:
 const dbConnect = require('./config/db-config');
-
 // Path:
 const path = require("path");
 
 ///////////////////////////////////////////////
 // Importe les routeur:
 
+// User:
+const userRoutes = require("./routes/user");
+// Book:
+const bookRoutes = require("./routes/book");
 
 ///////////////////////////////////////////////
 // Instance de l'objet express :
@@ -47,7 +45,6 @@ app.use(morgan('dev'));
 
 ///////////////////////////////////////////////
 // Ajoute des headers pour permettre l'accées à l'api:
-
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*')
     res.setHeader(
@@ -63,14 +60,18 @@ app.use((req, res, next) => {
 
 ///////////////////////////////////////////////
 // Appelée à chaque requête envoyée au serveur:
-
 app.use(bodyParser.json());
 
 ///////////////////////////////////////////////
 // Enregistrer les routeur:
 
 // *******************************************/
-// 
+// Authentification:
+app.use("/api/auth", userRoutes);
+
+// *******************************************/
+// Book:
+app.use("/api/book", bookRoutes);
 
 ///////////////////////////////////////////////
 // Exportation:
